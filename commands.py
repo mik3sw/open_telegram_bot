@@ -2,7 +2,7 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 
 def start(bot, update):
-    update.message.reply_text('Ciao sono Google Assistant, per altre informazioni sulle mie funzioni usa /help!')
+    update.message.reply_text('Ciao sono <b>[Nome ancora da decidere]</b>, per altre informazioni sulle mie funzioni e sui miei comandi usa /help!', parse_mode='HTML')
     print(update.message.chat_id)
 
 
@@ -11,6 +11,17 @@ def regole(bot, update):
 
 def help(bot, update):
     bot.send_message(update.message.chat_id, text=open('help.txt', 'r').read(), parse_mode='HTML')
+
+def source(bot, update):
+    bot.send_message(update.message.chat_id, text="<b>     Google Home Mini Bot</b>\n"
+                                                  "=======================\n\n"
+                                                  "<b>Files</b>:\n<em>- Bot.py\n- commands.py\n- handler.py\n- config.py\n- help.txt</em>\n\n"
+                                                  "<b>IDE</b>:<em> PyCharm Community edition</em>\n\n"
+                                                  "<b>Programming Language</b>:<code> Python</code>\n\n"
+                                                  "<b>Languages:</b> <em>Italian</em>\n\n"
+                                                  "<b>Version</b>:<em> v.0.1 - beta</em>\n\n"
+                                                  "<b>Source</b>:  <a href=\"https://github.com/MikeM2000/open_telegram_bot\">GitHub</a> ",
+                                             parse_mode='HTML')
 
 
 #COMANDI CARD
