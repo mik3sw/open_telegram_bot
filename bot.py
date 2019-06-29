@@ -21,6 +21,7 @@ def main():
     dp.add_handler(CommandHandler("help", commands.help))
     dp.add_handler(CommandHandler("regole", commands.regole))
     dp.add_handler(CommandHandler("parse", commands.parse))
+    dp.add_handler(CommandHandler("source", commands.source))
     # Comandi
 
     # Qui richiamo le funzioni senza comando, =>handler
