@@ -1,4 +1,7 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup
+from telegram.ext import Updater, CommandHandler, CallbackQueryHandler
+
 
 # DEFINIZIONE COMANDI ADMIN
 from functools import wraps
@@ -43,7 +46,7 @@ def buongiorno(bot, update):
     if update.message.text is not None:
         if 'buongiorno' in str(update.message.text).lower():
             bot.send_message(update.message.chat_id,
-                             "Buongiorno {username}".format(username=update.message.from_user.username), reply_to_message_id=update.message.message_id)
+                             "Buongiorno {name}".format(name=update.message.from_user.first_name), reply_to_message_id=update.message.message_id)
 
 
 # Buonanotte
@@ -52,22 +55,6 @@ def buonanotte(bot, update):
         if 'buonanotte' in str(update.message.text).lower():
             bot.send_message(update.message.chat_id,
                              "Buonanotte {username}".format(username=update.message.from_user.username, reply_to_message_id=update.message.message_id))
-
-
-# BENVENUTO
-def welcome(bot, update):
-    for new in update.message.new_chat_members:
-        update.message.reply_text("Benvenuto {username} in {chat_title}!\n"
-                                  "Ti preghiamo di rispettare le /regole per non ricevere sanzioni\n"
-                                  "Buona permanenza!\n\n<em>- lo staff</em>".format(
-            username="@" + new.username,
-            chat_title=update.message.chat.title
-        ), parse_mode='HTML')
-        bot.send_message('@AOSPItaliaLOG',
-                         text="<b>NUOVA UTENTE</b>\n\n<b>Gruppo</b>: {}\n<b>Utente</b>: @{username}\n\n<b>Vai al messaggio</b>: https://t.me/{}/{}"
-                         .format(update.message.chat.title, update.message.chat.username,
-                                 update.message.message_id, username=update.message.from_user.username, ),
-                         parse_mode='HTML')
 
 
 def say(bot, update):
@@ -91,23 +78,28 @@ def definisci(bot, update):
                 bot.sendMessage(update.message.chat_id, text=definition)
             except:
                 bot.sendMessage(update.message.chat_id,
-                                text="Mi spiace {}, non ho trovato nulla riguardo '{}'".format(name, var_messaggio))
+                                text="Mi spiace {}, non ho trovato nulla riguardo '{}'".format(update.message.from_user.first_name, var_messaggio))
 
 
-'''''''''
-@restricted
-def say(bot, update):
-	pass
-	if update.message.text is not None:
-		if update.message.text.startswith("/say"):
-            user_id = update.effective_user.id
-            if user_id is in LIST_OF_ADMINS:
-			    var_messaggio = update.message.text
-			    var_messaggio = var_messaggio.replace("/say", "")
-			    bot.send_message(update.message.chat_id, text='{}'.format(var_messaggio), parse_mode='HTML')
-			    '''''''''
-
-
+def welcome(bot, update):
+    for new in update.message.new_chat_members:
+        keyboard = [[InlineKeyboardButton("Non sono un Robot", callback_data='1')]]
+        reply_markup = InlineKeyboardMarkup(keyboard)
+        update.message.reply_text("Benvenuto {username} in {chat_title}!\n"
+                                  "Ti preghiamo di rispettare le /regole per non ricevere sanzioni\n"
+                                  "Buona permanenza!\n\n<em>- lo staff</em>".format(
+            username="@" + new.username,
+            chat_title=update.message.chat.title
+        ), reply_markup=reply_markup, parse_mode='HTML')
+        bot.send_message('@AOSPItaliaLOG',
+                         text="<b>NUOVO UTENTE</b>\n\n<b>Gruppo</b>: {}\n<b>Utente</b>: @{username}\n\n<b>Vai al messaggio</b>: https://t.me/{}/{}"
+                         .format(update.message.chat.title, update.message.chat.username,
+                                 update.message.message_id, username=update.message.from_user.username, ),
+                         parse_mode='HTML')
+        bot.restrict_chat_member(update.message.chat_id, update.message.from_user.id, can_send_messages=False,
+                                 can_send_media_messages=False, can_send_other_messages=False,
+                                 can_add_web_page_previews=False)
+	
 # DICHIARAZIONE FUNZIONI
 def init(bot, update):
     admin(bot, update)
