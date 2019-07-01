@@ -1,4 +1,6 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup
+from telegram.ext import Updater, CommandHandler, CallbackQueryHandler
 
 
 def start(bot, update):
@@ -31,4 +33,13 @@ def source(bot, update):
 def parse(bot,update):
     bot.send_message(update.message.chat_id, 
                  text='<b>bold</b> <i>italic</i> <a href="http://google.com">link</a>.', 
-                 parse_mode='HTML')    
+                 parse_mode='HTML')
+
+def button(bot, update):
+    query = update.callback_query
+    if query.data == '1':
+        query.edit_message_text(text="L'utente non è un robot!")
+        bot.restrict_chat_member(update.effective_chat.id, update.effective_user.id, can_send_messages=True,
+                                 can_send_media_messages=True, can_send_other_messages=True,
+                                 can_add_web_page_previews=True)
+
