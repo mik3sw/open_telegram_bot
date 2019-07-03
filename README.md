@@ -1,56 +1,43 @@
-# open_telegram_bot
+# Open Telegram bot
 
+General purpose, welcome and management bot made in Italy e tradotto completamente in italiano.
+Open gestisce i gruppi del network di [@AOSPitaliaNET](t.me/AOSPitaliaNET).
 
-<code>Bot Gestionale e di benvenuto [INTERAMENTE IN LINGUA ITALIANA]
-Migrazione di Gassistant con api python-telegram-bot</code>
+## Open, Assistant mode: domande
 
-ATTENZIONE NON TUTTE LE FUNZIONI SONO STATE IMPLEMENTATE
-
-<em>Il Bot è stato realizzato per inserirlo nei gruppi facenti parte del network di</em> [@AOSPitaliaNET](t.me/AOSPitaliaNET)
-
-
-## GOOGLE BOT QUESTIONS
-
-- Ok google / Hey google
-- Google lavori per la cia?
-- Google curiosità
-- Google barzelletta
-- Come stai google?
-- Che fai google
+- Ok open / Hey open
+- Open lavori per la cia?
+- Open curiosità
+- Open barzelletta
+- Come stai open?
+- Che fai open
 - Siri
 - Cortana
-- Google cosa pensi di
-- Ciao Google
-- Buonasera Google
+- Open cosa pensi di
+- Ciao Open
+- Buonasera Open
 - Buongiorno
 - Buonanotte
 - Nexus 5x
 
 
-## GOOGLE BOT FUNCTION
+## Le funzioni di Open
 
 - Benvenuto (messaggio di benvenuto)
 - Addio (messaggio quando qualcuno lascia il gruppo)
-- Google definisci --> fornisce la definizione da Wikipedia
+- Open definisci --> fornisce la definizione da Wikipedia
 
 
-## GOOGLE BOT COMMANDS
+## Open bot commands
 
 - /nuke [ancora in via di sviluppo]
 - /ban [da integrare con @unifiedban_bot]
 - /logon e /logoff [per il log dei messaggi inviati]
 - /regole [mostra le regole del network]
-- /say [fai dire a google cio' che vuoi]
+- /say [fai dire a Open cio' che vuoi]
 - /source [display source code]
 - /googlepixel [info about pixels]
 - /richiedi [richiedi una funzione/supporto]
 
-
-<b>=============================</b>
-
-<code>Release info:
-
 v.1.4.4 - stable
-Source code: /source (not updated)
-
-dev:</code> @mike_2000
+Source code: /source
